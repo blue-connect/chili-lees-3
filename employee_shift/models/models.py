@@ -25,6 +25,15 @@ class NewModddule(models.Model):
 class NewModdduele(models.Model):
 
     _inherit = 'resource.calendar'
+    
+    def _calculate_hours_per_week(self):
+        self.ensure_one()
+        attendances = self.attendance_ids.filtered(lambda r: not r.date_from and not r.date_to)
+        hour_count = 0.0
+        for attendance in attendances:
+            hour_count += attendance.hour_to - attendance.hour_from
+
+        return abs(hour_count)
     def _check_overlap(self, attendance_ids):
         """ attendance_ids correspond to attendance of a week,
             will check for each day of week that there are no superimpose. """
@@ -36,3 +45,4 @@ class NewModdduele(models.Model):
         #
         # if len(Intervals(result)) != len(result):
         #     raise ValidationError(_("Attendances can't overlap."))
+
