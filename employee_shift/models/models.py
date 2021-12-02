@@ -8,7 +8,7 @@ class NewModddule(models.Model):
 
     @api.onchange('hour_from', 'hour_to')
     def _onchange_hours(self):
-        print(':ahmedddd')
+
         # avoid negative or after midnight
         for rec in self :
             if rec.hour_to<rec.hour_from or rec.hour_to>24.00 :
@@ -34,6 +34,12 @@ class NewModdduele(models.Model):
             hour_count += attendance.hour_to - attendance.hour_from
 
         return abs(hour_count)
+
+    @api.onchange('attendance_ids', 'two_weeks_calendar')
+    def _onchange_hours_per_day(self):
+        attendances = self._get_global_attendances()
+        self.hours_per_day = abs(self._compute_hours_per_day(attendances))
+
     def _check_overlap(self, attendance_ids):
         """ attendance_ids correspond to attendance of a week,
             will check for each day of week that there are no superimpose. """
