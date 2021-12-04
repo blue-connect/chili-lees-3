@@ -81,7 +81,7 @@ class HrAttendance(models.Model):
         max_limit = int(self.env['ir.config_parameter'].sudo().get_param('maximum_minutes')) or 0
         late_check_in_ids = self.sudo().search([('id', 'not in', existing_records)])
         for rec in late_check_in_ids:
-            late_check_in = rec.sudo().late_check_in + 210
+            late_check_in = rec.sudo().late_check_in
             if rec.late_check_in > minutes_after and late_check_in > minutes_after and late_check_in < max_limit:
                 self.env['late.check_in'].sudo().create({
                     'employee_id': rec.employee_id.id,
