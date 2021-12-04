@@ -5,7 +5,7 @@ class HrPayslipInherit(models.Model):
 
     def compute_sheet(self):
         summ=0
-        late_obj =self.env['late.check_in'].search([('employee_id','=',self.emplyee_id.id),('date_from','<=',self.date),('date_to','>=',self.date)])
+        late_obj =self.env['late.check_in'].search([('employee_id','=',self.employee_id.id),('date_from','<=',self.date),('date_to','>=',self.date)])
         if late_obj:
             for recc in late_obj:
                 summ+=recc.late_minutes
