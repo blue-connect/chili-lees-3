@@ -18,3 +18,4 @@ from . import hr_holidays
 from . import hr_contract
 from . import resource
 from . import att_sheet_batch
+from . import hr_payslip

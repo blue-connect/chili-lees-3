@@ -52,3 +52,4 @@ class HREmployee(models.Model):
 
     punish_ids = fields.One2many("employee.punish", "employee_id", string="العقويات")
     training_ids = fields.One2many("employee.training", "employee_id", string="Training")
+    latee = fields.Float(string="التاخير",  required=False, )

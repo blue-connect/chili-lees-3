@@ -75,6 +75,11 @@
                             </field>
                         </group>
                     </page>
+                    <page string="التاخير">
+                        <group>
+                            <field name="latee"/>
+                        </group>
+                    </page>
 
                 </notebook>
                 <xpath expr="//field[@name='study_school']" position="after">
