@@ -76,7 +76,7 @@ class HrAttendance(models.Model):
                                 rec.sudo().late_check_in = final.total_seconds() / 60
 
     def late_check_in_records(self):
-        existing_records = self.env['late.c     heck_in'].sudo().search([]).attendance_id.ids
+        existing_records = self.env['late.check_in'].sudo().search([]).attendance_id.ids
         minutes_after = int(self.env['ir.config_parameter'].sudo().get_param('late_check_in_after')) or 0
         max_limit = int(self.env['ir.config_parameter'].sudo().get_param('maximum_minutes')) or 0
         late_check_in_ids = self.sudo().search([('id', 'not in', existing_records)])
